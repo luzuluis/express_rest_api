@@ -37,7 +37,7 @@ export const getUsers = async (req, res) => {
 };
 export const createUser = async (req, res) => {
   //res.send("creando usuarios");
-  //console.log(req.body);
+  console.log(req.body);
   //res.send("POST succsess");
   try {
     const { user, nombre, apellido } = req.body;
@@ -47,6 +47,7 @@ export const createUser = async (req, res) => {
       "INSERT INTO user(user,nombre,apellido,tipo,estado) VALUES(?,?,?,?,?)",
       [user, nombre, apellido, tipo, estado]
     );
+
     /*
     console.log({
       id: rows.insertId,
@@ -54,18 +55,19 @@ export const createUser = async (req, res) => {
       nombre,
       apellido,
       succes: ok,
-    });
-    */
+    });*/
+
     res.send({
       id: rows.insertId,
       user,
       nombre,
       apellido,
-      succes: ok,
+      succes: "ok",
     });
   } catch (error) {
     return res.status(500).json({
       message: "Something goes wrong",
+      error,
     });
   }
 };
